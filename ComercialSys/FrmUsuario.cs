@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ComClassSys;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -21,6 +22,8 @@ namespace ComercialSys
         private void btnInserir_Click(object sender, EventArgs e)
         {
             txtBusca.Text = $"{txtNome.Text} - {txtEmail.Text} - {txtSenha.Text}";
+
+
         }
     }
 }
