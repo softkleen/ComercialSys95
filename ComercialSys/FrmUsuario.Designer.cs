@@ -39,7 +39,7 @@
             label5 = new Label();
             txtConfSenha = new TextBox();
             groupBox1 = new GroupBox();
-            comboBox1 = new ComboBox();
+            cmbNivel = new ComboBox();
             btnConsultar = new Button();
             btnEditar = new Button();
             btnInserir = new Button();
@@ -140,7 +140,7 @@
             // 
             // groupBox1
             // 
-            groupBox1.Controls.Add(comboBox1);
+            groupBox1.Controls.Add(cmbNivel);
             groupBox1.Controls.Add(btnConsultar);
             groupBox1.Controls.Add(btnEditar);
             groupBox1.Controls.Add(btnInserir);
@@ -162,14 +162,14 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Dados de usuário";
             // 
-            // comboBox1
+            // cmbNivel
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "1 - Atendente", "2 - Caixa", "3 - Gerente", "4 - Estoquista", "5 - Empacotador" });
-            comboBox1.Location = new Point(320, 138);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 4;
+            cmbNivel.FormattingEnabled = true;
+            cmbNivel.Items.AddRange(new object[] { "1 - Atendente", "2 - Caixa", "3 - Gerente", "4 - Estoquista", "5 - Empacotador" });
+            cmbNivel.Location = new Point(320, 138);
+            cmbNivel.Name = "cmbNivel";
+            cmbNivel.Size = new Size(121, 23);
+            cmbNivel.TabIndex = 4;
             // 
             // btnConsultar
             // 
@@ -279,6 +279,7 @@
             Controls.Add(txtBusca);
             Name = "FrmUsuario";
             Text = "FrmUsuario";
+            Load += FrmUsuario_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)dgvUsuarios).EndInit();
@@ -309,7 +310,7 @@
         private DataGridViewTextBoxColumn clnNivel;
         private DataGridViewCheckBoxColumn clnAtivo;
         private TextBox txtBusca;
-        private ComboBox comboBox1;
+        private ComboBox cmbNivel;
         private Label label6;
     }
 }

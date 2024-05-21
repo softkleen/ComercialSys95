@@ -541,12 +541,13 @@ DELIMITER ;
 
 DELIMITER $$
 USE `comercialdb`$$
+-- drop procedure sp_usuario_insert;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuario_insert`(
 -- parâmetros da procedure
-spnome varchar(60), spemail varchar(60), spsenha varchar(32))
+spnome varchar(60), spemail varchar(60), spsenha varchar(32), spnivel char(1))
 begin
 	insert into usuarios 
-	values (0,spnome, spemail, md5(spsenha), 'A', default);
+	values (0,spnome, spemail, md5(spsenha), spnivel, default);
     select * from usuarios where id = last_insert_id();
 end$$
 
