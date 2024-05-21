@@ -4,16 +4,29 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
-
+-- -----------------------------------------------------
+-- Schema mydb
+-- -----------------------------------------------------
 -- -----------------------------------------------------
 -- Schema comercialdb
 -- -----------------------------------------------------
-Drop SCHEMA if exists  `comercialdb`;
+drop Schema `comercialdb`;
 -- -----------------------------------------------------
 -- Schema comercialdb
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `comercialdb` DEFAULT CHARACTER SET utf8 ;
 USE `comercialdb` ;
+
+-- -----------------------------------------------------
+-- Table `comercialdb`.`niveis`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `comercialdb`.`niveis` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(45) NOT NULL,
+  `sigla` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`id`))
+ENGINE = InnoDB;
+
 
 -- -----------------------------------------------------
 -- Table `comercialdb`.`usuarios`
@@ -23,12 +36,18 @@ CREATE TABLE IF NOT EXISTS `comercialdb`.`usuarios` (
   `nome` VARCHAR(60) NOT NULL,
   `email` VARCHAR(60) NOT NULL,
   `senha` VARCHAR(32) NOT NULL,
-  `nivel` CHAR(1) NOT NULL,
-  `ativo` BIT NOT NULL DEFAULT 1,
+  `nivel_id` INT NOT NULL,
+  `ativo` BIT(1) NOT NULL DEFAULT b'1',
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `email_UNIQUE` (`email` ASC) )
+  UNIQUE INDEX `email_UNIQUE` (`email` ASC) ,
+  INDEX `fk_usuarios_niveis1_idx` (`nivel_id` ASC) ,
+  CONSTRAINT `fk_usuarios_niveis1`
+    FOREIGN KEY (`nivel_id`)
+    REFERENCES `comercialdb`.`niveis` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
-AUTO_INCREMENT = 1003
+AUTO_INCREMENT = 1006
 DEFAULT CHARACTER SET = utf8;
 
 
@@ -527,7 +546,7 @@ DELIMITER $$
 USE `comercialdb`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuario_altera`(
 -- parâmetros da procedure
-spid int, spnome varchar(60), spsenha varchar(32), spnivel char(1))
+spid int, spnome varchar(60), spsenha varchar(32), spnivel int)
 begin
 	update usuarios 
 	set nome = spnome, senha = md5(spsenha), nivel = spnivel where id = spid;
@@ -541,10 +560,9 @@ DELIMITER ;
 
 DELIMITER $$
 USE `comercialdb`$$
--- drop procedure sp_usuario_insert;
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_usuario_insert`(
 -- parâmetros da procedure
-spnome varchar(60), spemail varchar(60), spsenha varchar(32), spnivel char(1))
+spnome varchar(60), spemail varchar(60), spsenha varchar(32), spnivel int)
 begin
 	insert into usuarios 
 	values (0,spnome, spemail, md5(spsenha), spnivel, default);

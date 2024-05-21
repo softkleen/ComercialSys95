@@ -21,9 +21,11 @@ namespace ComercialSys
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            string nivel = String.Empty;
-            nivel = cmbNivel.SelectedIndex == 0 ? "A" : "G";
-            Usuario usuario = new Usuario(txtNome.Text, txtEmail.Text, txtSenha.Text, nivel);
+            Usuario usuario = new Usuario(
+                txtNome.Text, 
+                txtEmail.Text, 
+                txtSenha.Text, 
+                Nivel.ObterPorId(Convert.ToInt32(cmbNivel.SelectedValue)));
             usuario.Inserir();
 
             FrmUsuario_Load(sender, e);
@@ -32,6 +34,14 @@ namespace ComercialSys
 
         private void FrmUsuario_Load(object sender, EventArgs e)
         {
+            //cmbNivel.Items.Clear();
+            var niveis = Nivel.ObterLista();
+            cmbNivel.DataSource = niveis;
+            cmbNivel.DisplayMember = "nome";
+            cmbNivel.ValueMember = "id";
+            
+
+
             var lista = Usuario.ObterLista();
             dgvUsuarios.Rows.Clear();
             int count = 0;
@@ -41,10 +51,33 @@ namespace ComercialSys
                 dgvUsuarios.Rows[count].Cells[0].Value = usuario.Id;
                 dgvUsuarios.Rows[count].Cells[1].Value = usuario.Nome;
                 dgvUsuarios.Rows[count].Cells[2].Value = usuario.Email;
-                dgvUsuarios.Rows[count].Cells[3].Value = usuario.Nivel;
+                dgvUsuarios.Rows[count].Cells[3].Value = usuario.Nivel.Nome;
                 dgvUsuarios.Rows[count].Cells[4].Value = usuario.Ativo;
 
                 count++;
+            }
+
+
+        }
+
+        private void btnConsultar_Click(object sender, EventArgs e)
+        {
+            if (btnConsultar.Text == "&Consultar")
+            {
+                txtId.ReadOnly = false;
+                txtId.Focus();
+                btnConsultar.Text = "&Obter por ID";
+            }
+            else 
+            {
+                if (txtId.Text.Length > 0) 
+                {
+                    Usuario usuario = Usuario.ObterPorId(int.Parse(txtId.Text));
+                    txtNome.Text = usuario.Nome;
+                    txtEmail.Text = usuario.Email;
+                    txtId.ReadOnly = true;
+                    btnConsultar.Text = "&Consultar";
+                } 
             }
 
 

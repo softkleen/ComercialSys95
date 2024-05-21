@@ -165,7 +165,6 @@
             // cmbNivel
             // 
             cmbNivel.FormattingEnabled = true;
-            cmbNivel.Items.AddRange(new object[] { "1 - Atendente", "2 - Caixa", "3 - Gerente", "4 - Estoquista", "5 - Empacotador" });
             cmbNivel.Location = new Point(320, 138);
             cmbNivel.Name = "cmbNivel";
             cmbNivel.Size = new Size(121, 23);
@@ -175,10 +174,11 @@
             // 
             btnConsultar.Location = new Point(251, 183);
             btnConsultar.Name = "btnConsultar";
-            btnConsultar.Size = new Size(75, 23);
+            btnConsultar.Size = new Size(119, 23);
             btnConsultar.TabIndex = 8;
             btnConsultar.Text = "&Consultar";
             btnConsultar.UseVisualStyleBackColor = true;
+            btnConsultar.Click += btnConsultar_Click;
             // 
             // btnEditar
             // 
