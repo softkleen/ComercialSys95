@@ -22,9 +22,9 @@ namespace ComercialSys
         private void btnInserir_Click(object sender, EventArgs e)
         {
             Usuario usuario = new Usuario(
-                txtNome.Text, 
-                txtEmail.Text, 
-                txtSenha.Text, 
+                txtNome.Text,
+                txtEmail.Text,
+                txtSenha.Text,
                 Nivel.ObterPorId(Convert.ToInt32(cmbNivel.SelectedValue)));
             usuario.Inserir();
 
@@ -39,7 +39,7 @@ namespace ComercialSys
             cmbNivel.DataSource = niveis;
             cmbNivel.DisplayMember = "nome";
             cmbNivel.ValueMember = "id";
-            
+
 
 
             var lista = Usuario.ObterLista();
@@ -64,23 +64,52 @@ namespace ComercialSys
         {
             if (btnConsultar.Text == "&Consultar")
             {
+                txtSenha.Clear(); // limpa o campo senha
+                txtConfSenha.Clear(); // limpa o campo de confirmação de senha
+                txtEmail.Clear(); // limpa o campo email 
+                txtNome.Clear(); // limpa o campo nome
                 txtId.ReadOnly = false;
                 txtId.Focus();
                 btnConsultar.Text = "&Obter por ID";
+                txtSenha.PlaceholderText = string.Empty;
             }
-            else 
+            else
             {
-                if (txtId.Text.Length > 0) 
+                if (txtId.Text.Length > 0)
                 {
                     Usuario usuario = Usuario.ObterPorId(int.Parse(txtId.Text));
                     txtNome.Text = usuario.Nome;
                     txtEmail.Text = usuario.Email;
                     txtId.ReadOnly = true;
                     btnConsultar.Text = "&Consultar";
-                } 
+                    txtSenha.PlaceholderText = "[senha não alterada]";
+
+                    cmbNivel.SelectedValue = usuario.Nivel.Id;
+                    btnEditar.Enabled = true;
+                }
             }
 
 
+        }
+
+        private void btnEditar_Click(object sender, EventArgs e)
+        {
+            Usuario usuario = new(
+                int.Parse(txtId.Text),
+                txtNome.Text,
+                txtEmail.Text,
+                txtSenha.Text,
+                Nivel.ObterPorId(Convert.ToInt32(cmbNivel.SelectedValue)),
+                true);
+            if (usuario.Editar(usuario.Id))
+            {
+                FrmUsuario_Load(sender, e);
+                MessageBox.Show($"o Usuário {usuario.Nome} foi alterado com sucesso!");
+            }
+            else
+            {
+                MessageBox.Show($"Falha ao alterar o usuário \"{usuario.Nome}\" !");
+            }
         }
     }
 }

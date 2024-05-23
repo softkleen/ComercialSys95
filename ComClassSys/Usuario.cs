@@ -52,7 +52,25 @@ namespace ComClassSys
         }
         public bool Editar(int id) 
         {
-            return true;
+            bool resultado = false;
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "sp_usuario_altera"; // nome da procedure de alteração de usuario
+            cmd.Parameters.AddWithValue("spid", Id);
+            cmd.Parameters.AddWithValue("spnome", Nome);
+            cmd.Parameters.AddWithValue("spsenha", Senha);
+            cmd.Parameters.AddWithValue("spnivel", Nivel.Id );
+            try
+            {
+                cmd.ExecuteNonQuery();
+                resultado = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return resultado;
         }
         public static Usuario ObterPorId(int id) 
         {
