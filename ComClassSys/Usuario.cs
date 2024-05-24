@@ -99,12 +99,20 @@ namespace ComClassSys
             }
             return usuario;
         }
-        public static List<Usuario> ObterLista() 
+        public static List<Usuario> ObterLista(string nome=null) 
         {
             List<Usuario> lista = new List<Usuario>();
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from usuarios" ;
+            if (nome == null)
+            {
+                cmd.CommandText = "select * from usuarios";
+            }
+            else 
+            {
+                cmd.CommandText = $"select * from usuarios where nome like '%{nome}%'";
+            }
+            
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -119,5 +127,23 @@ namespace ComClassSys
             }
             return lista;
         }
+        public static Usuario EfetuarLogin(string email, string senha) 
+        {
+            Usuario usuario = new();
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"select * from usuarios " +
+                $"where email = '{email}' and senha = md5('{senha}') and ativo = 1";
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                usuario.Id = dr.GetInt32(0);
+                usuario.Nome = dr.GetString(1);
+                usuario.Email = dr.GetString(2);
+                usuario.Nivel = Nivel.ObterPorId(Convert.ToInt32(dr.GetInt32(4))); 
+            }
+            return usuario;
+        }
+       
     }
 }

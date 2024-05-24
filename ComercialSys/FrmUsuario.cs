@@ -111,5 +111,30 @@ namespace ComercialSys
                 MessageBox.Show($"Falha ao alterar o usuário \"{usuario.Nome}\" !");
             }
         }
+
+        private void txtBusca_TextChanged(object sender, EventArgs e)
+        {
+            if (txtBusca.Text.Length > 0)
+            {
+                var lista = Usuario.ObterLista(txtBusca.Text);
+                dgvUsuarios.Rows.Clear();
+                int count = 0;
+                foreach (var usuario in lista)
+                {
+                    dgvUsuarios.Rows.Add();
+                    dgvUsuarios.Rows[count].Cells[0].Value = usuario.Id;
+                    dgvUsuarios.Rows[count].Cells[1].Value = usuario.Nome;
+                    dgvUsuarios.Rows[count].Cells[2].Value = usuario.Email;
+                    dgvUsuarios.Rows[count].Cells[3].Value = usuario.Nivel.Nome;
+                    dgvUsuarios.Rows[count].Cells[4].Value = usuario.Ativo;
+
+                    count++;
+                }
+            }
+            else 
+            {
+                FrmUsuario_Load(sender, e);
+            }
+        }
     }
 }

@@ -102,6 +102,24 @@ namespace ComercialSys
             }
         }
 
+        private void txtBusca_TextChanged(object sender, EventArgs e)
+        {
+            if (txtBusca.Text.Length > 0)
+            {
+                var lista = Categoria.ObterLista(txtBusca.Text);
+                dgvUsuarios.Rows.Clear();
+                int count = 0;
+                foreach (var usuario in lista)
+                {
+                    dgvUsuarios.Rows.Add();
+                    dgvUsuarios.Rows[count].Cells[0].Value = usuario.Id;
+                    dgvUsuarios.Rows[count].Cells[1].Value = usuario.Nome;
+                    dgvUsuarios.Rows[count].Cells[2].Value = usuario.Sigla;
 
+
+                    count++;
+                }
+            }
+        }
     }
 }
