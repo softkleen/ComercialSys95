@@ -22,5 +22,12 @@ namespace ComercialSys
             frmUsuario.MdiParent = this;
             frmUsuario.Show();
         }
+
+        private void categoriasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmCategoria frmCategoria = new FrmCategoria();
+            frmCategoria.MdiParent = this;
+            frmCategoria.Show();
+        }
     }
 }
