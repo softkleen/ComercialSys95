@@ -38,7 +38,7 @@ namespace ComercialSys
             //this.Hide();
             login.ShowDialog();
 
-            tslUsuario.Text = Program.Usuario.Nome + " - " + Program.Usuario.Nivel.Nome;
+           // tslUsuario.Text = Program.Usuario.Nome + " - " + Program.Usuario.Nivel.Nome;
 
         }
     }

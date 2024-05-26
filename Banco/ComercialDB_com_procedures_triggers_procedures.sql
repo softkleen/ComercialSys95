@@ -10,7 +10,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema comercialdb
 -- -----------------------------------------------------
-drop Schema `comercialdb`;
+-- drop Schema `comercialdb`;
 -- -----------------------------------------------------
 -- Schema comercialdb
 -- -----------------------------------------------------
@@ -575,7 +575,7 @@ DELIMITER ;
 -- -----------------------------------------------------
 -- procedure sp_venda_terminal
 -- -----------------------------------------------------
-
+-- drop procedure sp_venda_terminal;
 DELIMITER $$
 USE `comercialdb`$$
 CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_venda_terminal`(spusuario_id int,spcpf char(11), spcodbar varchar(60))
@@ -592,6 +592,58 @@ begin
 end$$
 
 DELIMITER ;
+
+-- -----------------------------------------------------
+-- procedure sp_inserir_cliente
+-- -----------------------------------------------------
+-- drop procedure sp_cliente_insert;
+DELIMITER $$
+USE `comercialdb`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_cliente_insert`(
+spid int,
+spnome varchar(100),
+spcpf char(11),
+sptelefone char (10),
+spemail varchar(100),
+spdata_nasc DATE 
+)
+begin
+ insert into clientes 
+ values (0,spnome,spcpf,sptelefone,spemail,spdata_nasc,DEFAULT);
+ select * from usuarios where id = last_insert_id();
+ end$$
+ DELIMITER ;
+ -- -----------------------------------------------------
+-- procedure sp_cliente_altera
+-- -----------------------------------------------------
+DELIMITER $$
+USE `comercialdb`$$
+-- drop procedure sp_cliente_altera;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_cliente_altera`(
+-- parâmetros da procedure
+spid int, spnome varchar(100), spcpf char(11), sptelefone char (10),spemail varchar(100),spdata_nasc DATE)
+begin
+	update clientes
+	set nome = spnome,telefone = sptelefone , email = spemail   where id = spid;
+end$$
+
+DELIMITER ;
+ -- -----------------------------------------------------
+-- procedure sp_cliente_delete
+-- -----------------------------------------------------
+ 
+ DELIMITER $$
+ -- drop procedure sp_cliente_delete;
+USE `comercialdb`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_cliente_delete`(spid int)
+begin
+	delete from clientes
+    where id = spid;
+end$$
+
+DELIMITER ;
+
+
 
 -- -----------------------------------------------------
 -- View `comercialdb`.`vw_pedido`

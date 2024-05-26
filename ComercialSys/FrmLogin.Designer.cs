@@ -103,7 +103,6 @@
             Controls.Add(txtEmail);
             Controls.Add(btnCancelar);
             Controls.Add(btnConfirmar);
-            FormBorderStyle = FormBorderStyle.None;
             Name = "FrmLogin";
             Text = "FrmLogin";
             ResumeLayout(false);
