@@ -96,6 +96,14 @@ namespace ComClassSys
             return resultado;
 
         }
+        public void ExcluirEndereco() 
+            {
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "sp_endereco_delete";
+            cmd.Parameters.AddWithValue("@id", ID);
+            cmd.ExecuteNonQuery();
+        }
 
 
 
