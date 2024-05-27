@@ -131,10 +131,20 @@ namespace ComercialSys
                     count++;
                 }
             }
-            else 
+            else
             {
                 FrmUsuario_Load(sender, e);
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtId_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

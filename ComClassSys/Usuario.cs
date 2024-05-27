@@ -72,6 +72,7 @@ namespace ComClassSys
 
             return resultado;
         }
+      
         public static Usuario ObterPorId(int id) 
         {
             Usuario usuario = new Usuario();

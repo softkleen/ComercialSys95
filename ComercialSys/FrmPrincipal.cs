@@ -38,8 +38,30 @@ namespace ComercialSys
             //this.Hide();
             login.ShowDialog();
 
-           // tslUsuario.Text = Program.Usuario.Nome + " - " + Program.Usuario.Nivel.Nome;
+            // tslUsuario.Text = Program.Usuario.Nome + " - " + Program.Usuario.Nivel.Nome;
 
+        }
+
+        private void novoToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            FrmEndereco frmEndereco = new FrmEndereco();
+            frmEndereco.MdiParent = this;
+            frmEndereco.Show();
+        }
+
+        private void consultarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmClienteConsultar frmClienteConsultar = new FrmClienteConsultar();
+            frmClienteConsultar.MdiParent = this;
+            frmClienteConsultar.Show();
+
+        }
+
+        private void consultarToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            FrmEnderecoConsultar frmEnderecoConsultar = new FrmEnderecoConsultar();
+            frmEnderecoConsultar.MdiParent = this;
+            frmEnderecoConsultar.Show();
         }
     }
 }

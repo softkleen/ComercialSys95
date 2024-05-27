@@ -71,6 +71,7 @@
             txtId.ReadOnly = true;
             txtId.Size = new Size(61, 23);
             txtId.TabIndex = 6;
+            txtId.TextChanged += txtId_TextChanged;
             // 
             // txtNome
             // 
@@ -161,6 +162,7 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "Dados de usuário";
+            groupBox1.Enter += groupBox1_Enter;
             // 
             // cmbNivel
             // 
