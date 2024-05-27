@@ -12,7 +12,7 @@ namespace ComClassSys
         // propriedade da classe
 
         public int ID { get; set; }
-        public string ClienteId { get; set; }
+        public int ClienteId { get; set; }
         public string Cep { get; set; }
         public string Logradouro { get; set; }
         public string Numero { get; set; }
@@ -23,7 +23,7 @@ namespace ComClassSys
         public string TipoEndereco {  get; set; }
         public Endereco() { }
 
-        public  Endereco(string clienteId, string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string uf, string tipoEndereco )
+        public  Endereco(int clienteId, string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string uf, string tipoEndereco )
         {
             
             ClienteId = clienteId;
@@ -38,7 +38,7 @@ namespace ComClassSys
         }
 
 
-        public Endereco(int id, string clienteId, string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string uf, string tipoEndereco)
+        public Endereco(int id, int clienteId, string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string uf, string tipoEndereco)
         {
             ID = id;
             ClienteId = clienteId;
@@ -97,41 +97,34 @@ namespace ComClassSys
             return resultado;
 
         }
+
+
         public void Excluir() 
             {
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.CommandText = "sp_endereco_delete";
-            cmd.Parameters.AddWithValue("@id", ID);
+            cmd.Parameters.AddWithValue("spid", ID);
             cmd.ExecuteNonQuery();
         }
 
-        public static List<Endereco> ObterLista(string nome = null)
+        public static List<Endereco> ObterLista(int clienteId)
         {
-            List<Endereco> lista = new List<Endereco>();
+            List<Endereco> lista = new();
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from enderecos";
+            cmd.CommandText = $"select * from enderecos where cliente_id = {clienteId}";
 
-            var dr = cmd.ExecuteReader();
-            while (dr.Read())
-            {
-               lista.Add(new Endereco(
-                   
-                   dr.GetInt32(0),
-                   dr.GetString(1),
-                   dr.GetString(2),
-                   dr.GetString(3),
-                   dr.GetString(4),
-                   dr.GetString(5),
-                   dr.GetString(6),
-                   dr.GetString(7),
-                   dr.GetString(8),
-                   dr.GetString(9)
-
-                   ));
-            }
+           
             return lista;
+        }
+        public static Endereco ObterPorId(int id)
+        {
+            Endereco endereco = new();
+
+            return endereco;   
+            }
+            
         }
 
 

@@ -25,7 +25,7 @@ namespace ComercialSys
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            Cliente cliente = new Cliente(txtNome.Text, masktxtCpf.Text, masketxtTell.Text, txtEmail.Text, masktxtDataNasc.Text);
+            Cliente cliente = new Cliente(txtNome.Text, masktxtCpf.Text, masketxtTell.Text, txtEmail.Text, Endereco.ObterPorId(Convert.ToInt32(cmbEndCliente.SelectedValue)), masktxtDataNasc.Text);
             cliente.Inserir();
             FrmCliente_Load(sender, e);
 
@@ -73,7 +73,7 @@ namespace ComercialSys
                 txtEmail.Text,
                 masktxtDataNasc.Text,
                 maskedTxtDataCad.Text,
-                masktxtAtivo.Text
+               Convert.ToSByte( masktxtAtivo.Text)
                 );
             if (cliente.Editar(cliente.Id))
             {
@@ -84,6 +84,22 @@ namespace ComercialSys
             {
                 MessageBox.Show($"Falha ao alterar o Cliente \"{cliente.Id}\" !");
             }
+            return cliente;
+        }
+
+        private void btnObterEndereco_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtEndCliente_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

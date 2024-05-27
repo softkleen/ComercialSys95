@@ -42,6 +42,9 @@
             masktxtCpf = new MaskedTextBox();
             masketxtTell = new MaskedTextBox();
             groupBox1 = new GroupBox();
+            label9 = new Label();
+            cmbEndCliente = new ComboBox();
+            btnObterEndereco = new Button();
             label8 = new Label();
             masktxtAtivo = new MaskedTextBox();
             label7 = new Label();
@@ -70,7 +73,7 @@
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(326, 143);
+            txtEmail.Location = new Point(116, 131);
             txtEmail.Name = "txtEmail";
             txtEmail.Size = new Size(348, 23);
             txtEmail.TabIndex = 4;
@@ -96,7 +99,7 @@
             // label3
             // 
             label3.AutoSize = true;
-            label3.Location = new Point(292, 88);
+            label3.Location = new Point(84, 76);
             label3.Name = "label3";
             label3.Size = new Size(26, 15);
             label3.TabIndex = 10;
@@ -105,7 +108,7 @@
             // label4
             // 
             label4.AutoSize = true;
-            label4.Location = new Point(271, 117);
+            label4.Location = new Point(63, 105);
             label4.Name = "label4";
             label4.Size = new Size(51, 15);
             label4.TabIndex = 11;
@@ -114,7 +117,7 @@
             // label5
             // 
             label5.AutoSize = true;
-            label5.Location = new Point(282, 146);
+            label5.Location = new Point(77, 134);
             label5.Name = "label5";
             label5.Size = new Size(36, 15);
             label5.TabIndex = 12;
@@ -123,7 +126,7 @@
             // label6
             // 
             label6.AutoSize = true;
-            label6.Location = new Point(208, 175);
+            label6.Location = new Point(-1, 185);
             label6.Name = "label6";
             label6.Size = new Size(114, 15);
             label6.TabIndex = 13;
@@ -131,7 +134,7 @@
             // 
             // btnInserir
             // 
-            btnInserir.Location = new Point(51, 196);
+            btnInserir.Location = new Point(63, 208);
             btnInserir.Name = "btnInserir";
             btnInserir.Size = new Size(75, 23);
             btnInserir.TabIndex = 6;
@@ -141,7 +144,7 @@
             // 
             // btnEditar
             // 
-            btnEditar.Location = new Point(251, 196);
+            btnEditar.Location = new Point(238, 208);
             btnEditar.Name = "btnEditar";
             btnEditar.Size = new Size(75, 23);
             btnEditar.TabIndex = 8;
@@ -151,7 +154,7 @@
             // 
             // masktxtDataNasc
             // 
-            masktxtDataNasc.Location = new Point(326, 167);
+            masktxtDataNasc.Location = new Point(116, 182);
             masktxtDataNasc.Mask = "00/00/0000";
             masktxtDataNasc.Name = "masktxtDataNasc";
             masktxtDataNasc.Size = new Size(88, 23);
@@ -159,7 +162,7 @@
             // 
             // masktxtCpf
             // 
-            masktxtCpf.Location = new Point(326, 88);
+            masktxtCpf.Location = new Point(116, 73);
             masktxtCpf.Mask = "000.000.000-00";
             masktxtCpf.Name = "masktxtCpf";
             masktxtCpf.Size = new Size(348, 23);
@@ -167,7 +170,7 @@
             // 
             // masketxtTell
             // 
-            masketxtTell.Location = new Point(326, 117);
+            masketxtTell.Location = new Point(116, 102);
             masketxtTell.Mask = "(00)00000-0000";
             masketxtTell.Name = "masketxtTell";
             masketxtTell.Size = new Size(348, 23);
@@ -175,12 +178,23 @@
             // 
             // groupBox1
             // 
+            groupBox1.Controls.Add(label9);
+            groupBox1.Controls.Add(cmbEndCliente);
+            groupBox1.Controls.Add(btnObterEndereco);
             groupBox1.Controls.Add(label8);
+            groupBox1.Controls.Add(label3);
+            groupBox1.Controls.Add(masktxtCpf);
+            groupBox1.Controls.Add(masketxtTell);
+            groupBox1.Controls.Add(label4);
             groupBox1.Controls.Add(masktxtAtivo);
             groupBox1.Controls.Add(label7);
+            groupBox1.Controls.Add(label5);
+            groupBox1.Controls.Add(label6);
+            groupBox1.Controls.Add(masktxtDataNasc);
             groupBox1.Controls.Add(maskedTxtDataCad);
             groupBox1.Controls.Add(txtId);
             groupBox1.Controls.Add(btnInserir);
+            groupBox1.Controls.Add(txtEmail);
             groupBox1.Controls.Add(btnEditar);
             groupBox1.Location = new Point(208, 12);
             groupBox1.Name = "groupBox1";
@@ -188,6 +202,35 @@
             groupBox1.TabIndex = 0;
             groupBox1.TabStop = false;
             groupBox1.Text = "groupBox1";
+            groupBox1.Enter += groupBox1_Enter;
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Location = new Point(17, 161);
+            label9.Name = "label9";
+            label9.Size = new Size(96, 15);
+            label9.TabIndex = 22;
+            label9.Text = "Endereço Cliente";
+            // 
+            // cmbEndCliente
+            // 
+            cmbEndCliente.FormattingEnabled = true;
+            cmbEndCliente.Location = new Point(116, 158);
+            cmbEndCliente.Name = "cmbEndCliente";
+            cmbEndCliente.Size = new Size(350, 23);
+            cmbEndCliente.TabIndex = 21;
+            cmbEndCliente.SelectedIndexChanged += txtEndCliente_SelectedIndexChanged;
+            // 
+            // btnObterEndereco
+            // 
+            btnObterEndereco.Location = new Point(404, 208);
+            btnObterEndereco.Name = "btnObterEndereco";
+            btnObterEndereco.Size = new Size(96, 23);
+            btnObterEndereco.TabIndex = 20;
+            btnObterEndereco.Text = "ObterEndereco";
+            btnObterEndereco.UseVisualStyleBackColor = true;
+            btnObterEndereco.Click += btnObterEndereco_Click;
             // 
             // label8
             // 
@@ -239,7 +282,7 @@
             dgvUsuarios.AllowUserToDeleteRows = false;
             dgvUsuarios.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dgvUsuarios.Columns.AddRange(new DataGridViewColumn[] { clnId, clnNome, clnCpf, clnTelefone, clnEmail, clnDataNasc, clnDataCad, clnAtivo });
-            dgvUsuarios.Location = new Point(12, 288);
+            dgvUsuarios.Location = new Point(12, 297);
             dgvUsuarios.Name = "dgvUsuarios";
             dgvUsuarios.ReadOnly = true;
             dgvUsuarios.RowHeadersVisible = false;
@@ -311,7 +354,7 @@
             // 
             // txtBusca
             // 
-            txtBusca.Location = new Point(12, 255);
+            txtBusca.Location = new Point(12, 268);
             txtBusca.Name = "txtBusca";
             txtBusca.PlaceholderText = "Digite pelo menos duas letras para pesquisar cliente";
             txtBusca.Size = new Size(776, 23);
@@ -324,16 +367,8 @@
             ClientSize = new Size(800, 450);
             Controls.Add(dgvUsuarios);
             Controls.Add(txtBusca);
-            Controls.Add(masketxtTell);
-            Controls.Add(masktxtCpf);
-            Controls.Add(masktxtDataNasc);
-            Controls.Add(label6);
-            Controls.Add(label5);
-            Controls.Add(label4);
-            Controls.Add(label3);
             Controls.Add(label2);
             Controls.Add(label1);
-            Controls.Add(txtEmail);
             Controls.Add(txtNome);
             Controls.Add(groupBox1);
             Name = "FrmCliente";
@@ -376,5 +411,8 @@
         private DataGridViewTextBoxColumn clnAtivo;
         private Label label8;
         private MaskedTextBox masktxtAtivo;
+        private Button btnObterEndereco;
+        private Label label9;
+        private ComboBox cmbEndCliente;
     }
 }

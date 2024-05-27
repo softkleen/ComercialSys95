@@ -5,6 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using MySql.Data.Types;
+using Mysqlx.Notice;
+using System.Runtime.InteropServices;
 
 namespace ComClassSys
 {
@@ -16,30 +18,34 @@ namespace ComClassSys
         public string? Cpf { get; set; } 
         public string? Telefone { get; set; }
         public string? Email { get; set; }
+        public Endereco? Enderecos { get; set; }
         public string? Data_nasc {  get; set; }
         public string? Data_cad {  get; set; }
-        public string? Ativo {  get; set; }
+        public bool? Ativo {  get; set; }
 
         public Cliente() {
             Id = 0;
         }
 
-        public Cliente( string nome, string cpf, string telefone, string email, string data_nasc)
+        public Cliente( string nome, string cpf, string telefone,string email, Endereco enderecos, string data_nasc)
         {         
             Nome = nome;    
             Cpf = cpf;
             Telefone = telefone;
+            Enderecos = enderecos;
             Email = email;
             Data_nasc = data_nasc;
+          
         
                    
         }
-        public Cliente(int id,string nome, string cpf, string telefone, string email, string data_nasc, string data_cad, string ativo)
+        public Cliente(int id,string nome, string cpf, string telefone,string email, Endereco enderecos, string data_nasc, string data_cad, bool ativo)
         {
             Id = id;
             Nome = nome;
             Cpf = cpf;
             Telefone = telefone;
+            Enderecos = enderecos;
             Email = email;
             Data_nasc = data_nasc;
             Data_cad = data_cad;
@@ -83,13 +89,43 @@ namespace ComClassSys
             }
             return resultado;
         }
+        public static Cliente ObterPorId(int id)
+        {
+            Cliente cliente = new Cliente();
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.Text;
+            cmd.CommandText = $"select * from clientes where id ={id}";
+            var dr = cmd.ExecuteReader();
+            while (dr.Read())
+            {
+                cliente = new(dr.GetInt32(0)
+                    ,dr.GetString(1)
+                    ,dr.GetString(2)
+                    ,dr.GetString(3)
+                    ,dr.GetString(4)
+                    ,Endereco.ObterPorId(dr.GetInt32(5))
+                    ,dr.GetString(6)
+                    ,dr.GetString(7)
+                    ,dr.GetBoolean(8)
+                    
+                    );
+            }
+            return cliente;
+        }
         public static List<Cliente> ObterLista(string nome = null)
         {
             List<Cliente> lista = new List<Cliente>();
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.Text;
-            cmd.CommandText = "select * from clientes";
-           
+            if (nome == null)
+            {
+                cmd.CommandText = "select * from clientes";
+            }
+            else
+            {
+                cmd.CommandText = $"select * from clientes where nome '%{nome}%'";
+            }
+
             var dr = cmd.ExecuteReader();
             while (dr.Read())
             {
@@ -100,9 +136,12 @@ namespace ComClassSys
                     dr.GetString(2),
                     dr.GetString(3),
                     dr.GetString(4),
-                    dr.GetString(5),
+                    Endereco.ObterPorId(dr.GetInt32(5)),
                     dr.GetString(6),
-                    dr.GetString(7)
+                    dr.GetString(7),
+                    dr.GetBoolean(8)
+
+                   
                     ));
             }
             return lista;

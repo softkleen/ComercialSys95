@@ -53,8 +53,8 @@ namespace ComercialSys
 
         private void btnInserir_Click(object sender, EventArgs e)
         {
-            Endereco endereco = new Endereco(
-                txtClienteId.Text,
+            Endereco endereco = new Endereco();
+                Endereco.ObterPorId(Convert.ToInt32(SelectedValue),
                 maskTxtCep.Text,
                 txtLogradouro.Text,
                 maskTxtNumero.Text,
@@ -76,7 +76,7 @@ namespace ComercialSys
         {
             Endereco endereco = new(
                 int.Parse(txtId.Text),
-                txtClienteId.Text,
+                int.Parse(txtClienteId.Text),
                 maskTxtCep.Text,
                 txtLogradouro.Text,
                 maskTxtNumero.Text,

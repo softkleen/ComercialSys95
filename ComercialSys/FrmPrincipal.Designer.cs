@@ -50,6 +50,7 @@
             caixaToolStripMenuItem = new ToolStripMenuItem();
             statusStrip1 = new StatusStrip();
             tslUsuario = new ToolStripStatusLabel();
+            novooToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             statusStrip1.SuspendLayout();
             SuspendLayout();
@@ -72,7 +73,7 @@
             // 
             // cToolStripMenuItem
             // 
-            cToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { novoToolStripMenuItem, consultarToolStripMenuItem });
+            cToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { novoToolStripMenuItem, consultarToolStripMenuItem, novooToolStripMenuItem });
             cToolStripMenuItem.Image = Properties.Resources.User;
             cToolStripMenuItem.Name = "cToolStripMenuItem";
             cToolStripMenuItem.Size = new Size(180, 22);
@@ -136,14 +137,14 @@
             // novoToolStripMenuItem3
             // 
             novoToolStripMenuItem3.Name = "novoToolStripMenuItem3";
-            novoToolStripMenuItem3.Size = new Size(180, 22);
+            novoToolStripMenuItem3.Size = new Size(125, 22);
             novoToolStripMenuItem3.Text = "&Novo";
             novoToolStripMenuItem3.Click += novoToolStripMenuItem3_Click;
             // 
             // consultarToolStripMenuItem2
             // 
             consultarToolStripMenuItem2.Name = "consultarToolStripMenuItem2";
-            consultarToolStripMenuItem2.Size = new Size(180, 22);
+            consultarToolStripMenuItem2.Size = new Size(125, 22);
             consultarToolStripMenuItem2.Text = "&Consultar";
             consultarToolStripMenuItem2.Click += consultarToolStripMenuItem2_Click;
             // 
@@ -208,6 +209,12 @@
             tslUsuario.Size = new Size(12, 17);
             tslUsuario.Text = "-";
             // 
+            // novooToolStripMenuItem
+            // 
+            novooToolStripMenuItem.Name = "novooToolStripMenuItem";
+            novooToolStripMenuItem.Size = new Size(180, 22);
+            novooToolStripMenuItem.Text = "&Novoo";
+            // 
             // FrmPrincipal
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -253,5 +260,6 @@
         private ToolStripMenuItem enderecoToolStripMenuItem;
         private ToolStripMenuItem novoToolStripMenuItem3;
         private ToolStripMenuItem consultarToolStripMenuItem2;
+        private ToolStripMenuItem novooToolStripMenuItem;
     }
 }
