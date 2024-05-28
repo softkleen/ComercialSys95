@@ -12,7 +12,7 @@ namespace ComClassSys
     
 
         public int Id { get; set; }
-        public int CLienteId { get; set; }
+        public int ClienteId { get; set; }
         public string Cep { get; set; }
         public string Logradouro { get; set; }
         public string Numero { get; set; }
@@ -25,10 +25,10 @@ namespace ComClassSys
         {
         }
 
-        public Endereco(int id, int cLienteId, string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string uf, string tipoEndereco)
+        public Endereco(int id, int clienteId, string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string uf, string tipoEndereco)
         {
             Id = id;
-            CLienteId = cLienteId;
+            ClienteId = clienteId;
             Cep = cep;
             Logradouro = logradouro;
             Numero = numero;
@@ -38,9 +38,9 @@ namespace ComClassSys
             Uf = uf;
             TipoEndereco = tipoEndereco;
         }
-        public Endereco( int cLienteId, string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string uf, string tipoEndereco)
+        public Endereco( int clienteId, string cep, string logradouro, string numero, string complemento, string bairro, string cidade, string uf, string tipoEndereco)
         {
-            CLienteId = cLienteId;
+            ClienteId = clienteId;
             Cep = cep;
             Logradouro = logradouro;
             Numero = numero;
@@ -51,14 +51,45 @@ namespace ComClassSys
             TipoEndereco = tipoEndereco;
         }
         public void Inserir() 
-        { 
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "sp_cliente_insert";
+            cmd.Parameters.AddWithValue("spcliente_id", ClienteId);
+            cmd.Parameters.AddWithValue("spcep", Cep);
+            cmd.Parameters.AddWithValue("splogradouro", Logradouro);
+            cmd.Parameters.AddWithValue("spnumero", Numero);
+            cmd.Parameters.AddWithValue("spcomplemento", Complemento);
+            cmd.Parameters.AddWithValue("spbairro", Bairro);
+            cmd.Parameters.AddWithValue("spcidade", Cidade);
+            cmd.Parameters.AddWithValue("spuf", Uf);
+            cmd.Parameters.AddWithValue("sptipo_endereco", TipoEndereco);
+            Id = Convert.ToInt32(cmd.ExecuteScalar());
+
+        }
+        public bool Editar(int id) 
+        {
+            var cmd = Banco.Abrir();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "sp_cliente_update";
+            cmd.Parameters.AddWithValue("spid", id);
+            cmd.Parameters.AddWithValue("spcliente_id", ClienteId);
+            cmd.Parameters.AddWithValue("spcep", Cep);
+            cmd.Parameters.AddWithValue("splogradouro", Logradouro);
+            cmd.Parameters.AddWithValue("spnumero", Numero);
+            cmd.Parameters.AddWithValue("spcomplemento", Complemento);
+            cmd.Parameters.AddWithValue("spbairro", Bairro);
+            cmd.Parameters.AddWithValue("spcidade", Cidade);
+            cmd.Parameters.AddWithValue("spuf", Uf);
+            cmd.Parameters.AddWithValue("sptipo_endereco", TipoEndereco);
+            return cmd.ExecuteNonQuery()>-1?true:false;
+            
         
         }
-        public bool Editar() { return true; }
-        public static Endereco ObterPorId() 
+        public static Endereco ObterPorId(int id) 
         {
             Endereco endereco = new();
-
+          
             return endereco;
         }
         public static List<Endereco> ObterListaPorCliente(int clienteId)

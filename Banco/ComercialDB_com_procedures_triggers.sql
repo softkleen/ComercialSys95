@@ -395,20 +395,36 @@ DELIMITER ;
 
 DELIMITER $$
 USE `comercialdb`$$
-CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_insere_cliente`(
-sp_nome varchar(100), 
-sp_cpf char(11), 
-sp_telefone char(14), 
-sp_email varchar(60), 
-sp_data_nasc date
+CREATE DEFINER=`root`@`localhost` PROCEDURE `sp_cliente_insert`(
+spnome varchar(100), 
+spcpf char(11), 
+sptelefone char(14), 
+spemail varchar(60), 
+spdatanasc date
 )
 begin
 	insert into clientes 
-    values (0,sp_nome, sp_cpf, sp_telefone, sp_email, sp_data_nasc,default,1);
+    values (0,spnome, spcpf, sptelefone, spemail, spdatanasc,default,1);
     select  last_insert_id();
 end$$
 
 DELIMITER ;
+
+
+
+USE `comercialdb`;
+DROP procedure IF EXISTS `sp_cliente_update`;
+
+DELIMITER $$
+USE `comercialdb`$$
+CREATE PROCEDURE `sp_cliente_update` (spid int, spnome varchar(100), sptelefone char(14), spdatanasc date)
+BEGIN
+ update clientes set nome= spnome, telefone  = sptelefone, data_nasc = spdatanasc where id = spid; 
+END$$
+
+DELIMITER ;
+
+
 
 -- -----------------------------------------------------
 -- procedure sp_itempedido_delete
