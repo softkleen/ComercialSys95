@@ -30,11 +30,12 @@
         {
             tabControl1 = new TabControl();
             tbpDadosPessoais = new TabPage();
+            txtClienteId = new TextBox();
             btnEditar = new Button();
             btnInsert = new Button();
             label4 = new Label();
             mxtCpf = new MaskedTextBox();
-            mstTelefone = new MaskedTextBox();
+            mxtTelefone = new MaskedTextBox();
             label3 = new Label();
             label2 = new Label();
             label1 = new Label();
@@ -44,16 +45,16 @@
             txtEmail = new TextBox();
             txtNome = new TextBox();
             tbpEnderecos = new TabPage();
-            button2 = new Button();
-            button1 = new Button();
-            comboBox1 = new ComboBox();
-            textBox6 = new TextBox();
-            textBox5 = new TextBox();
-            textBox4 = new TextBox();
-            textBox3 = new TextBox();
-            textBox2 = new TextBox();
-            textBox1 = new TextBox();
-            maskedTextBox1 = new MaskedTextBox();
+            btnAdicionaEndereco = new Button();
+            btnSalvar = new Button();
+            cmbTipoEndereco = new ComboBox();
+            txtUf = new TextBox();
+            txtCidade = new TextBox();
+            txtBairro = new TextBox();
+            txtComplemento = new TextBox();
+            txtNumero = new TextBox();
+            txtLogradouro = new TextBox();
+            mxtCep = new MaskedTextBox();
             groupBox1 = new GroupBox();
             dgvEnderecos = new DataGridView();
             clnCep = new DataGridViewTextBoxColumn();
@@ -83,11 +84,12 @@
             // 
             // tbpDadosPessoais
             // 
+            tbpDadosPessoais.Controls.Add(txtClienteId);
             tbpDadosPessoais.Controls.Add(btnEditar);
             tbpDadosPessoais.Controls.Add(btnInsert);
             tbpDadosPessoais.Controls.Add(label4);
             tbpDadosPessoais.Controls.Add(mxtCpf);
-            tbpDadosPessoais.Controls.Add(mstTelefone);
+            tbpDadosPessoais.Controls.Add(mxtTelefone);
             tbpDadosPessoais.Controls.Add(label3);
             tbpDadosPessoais.Controls.Add(label2);
             tbpDadosPessoais.Controls.Add(label1);
@@ -103,6 +105,15 @@
             tbpDadosPessoais.TabIndex = 0;
             tbpDadosPessoais.Text = "Dados pessoais";
             tbpDadosPessoais.UseVisualStyleBackColor = true;
+            // 
+            // txtClienteId
+            // 
+            txtClienteId.Location = new Point(314, 110);
+            txtClienteId.Name = "txtClienteId";
+            txtClienteId.Size = new Size(100, 23);
+            txtClienteId.TabIndex = 2;
+            txtClienteId.Text = "0";
+            txtClienteId.Visible = false;
             // 
             // btnEditar
             // 
@@ -140,13 +151,13 @@
             mxtCpf.Size = new Size(95, 23);
             mxtCpf.TabIndex = 12;
             // 
-            // mstTelefone
+            // mxtTelefone
             // 
-            mstTelefone.Location = new Point(25, 110);
-            mstTelefone.Mask = "(99) 00000-0000";
-            mstTelefone.Name = "mstTelefone";
-            mstTelefone.Size = new Size(100, 23);
-            mstTelefone.TabIndex = 11;
+            mxtTelefone.Location = new Point(25, 110);
+            mxtTelefone.Mask = "(99) 00000-0000";
+            mxtTelefone.Name = "mxtTelefone";
+            mxtTelefone.Size = new Size(100, 23);
+            mxtTelefone.TabIndex = 11;
             // 
             // label3
             // 
@@ -190,7 +201,7 @@
             chkAtivo.Checked = true;
             chkAtivo.CheckState = CheckState.Checked;
             chkAtivo.FlatAppearance.BorderSize = 0;
-            chkAtivo.Location = new Point(367, 23);
+            chkAtivo.Location = new Point(434, 23);
             chkAtivo.Name = "chkAtivo";
             chkAtivo.Size = new Size(54, 19);
             chkAtivo.TabIndex = 6;
@@ -212,28 +223,28 @@
             // 
             txtEmail.Location = new Point(130, 64);
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(291, 23);
+            txtEmail.Size = new Size(358, 23);
             txtEmail.TabIndex = 4;
             // 
             // txtNome
             // 
             txtNome.Location = new Point(24, 23);
             txtNome.Name = "txtNome";
-            txtNome.Size = new Size(320, 23);
+            txtNome.Size = new Size(390, 23);
             txtNome.TabIndex = 1;
             // 
             // tbpEnderecos
             // 
-            tbpEnderecos.Controls.Add(button2);
-            tbpEnderecos.Controls.Add(button1);
-            tbpEnderecos.Controls.Add(comboBox1);
-            tbpEnderecos.Controls.Add(textBox6);
-            tbpEnderecos.Controls.Add(textBox5);
-            tbpEnderecos.Controls.Add(textBox4);
-            tbpEnderecos.Controls.Add(textBox3);
-            tbpEnderecos.Controls.Add(textBox2);
-            tbpEnderecos.Controls.Add(textBox1);
-            tbpEnderecos.Controls.Add(maskedTextBox1);
+            tbpEnderecos.Controls.Add(btnAdicionaEndereco);
+            tbpEnderecos.Controls.Add(btnSalvar);
+            tbpEnderecos.Controls.Add(cmbTipoEndereco);
+            tbpEnderecos.Controls.Add(txtUf);
+            tbpEnderecos.Controls.Add(txtCidade);
+            tbpEnderecos.Controls.Add(txtBairro);
+            tbpEnderecos.Controls.Add(txtComplemento);
+            tbpEnderecos.Controls.Add(txtNumero);
+            tbpEnderecos.Controls.Add(txtLogradouro);
+            tbpEnderecos.Controls.Add(mxtCep);
             tbpEnderecos.Location = new Point(4, 24);
             tbpEnderecos.Name = "tbpEnderecos";
             tbpEnderecos.Padding = new Padding(3);
@@ -242,82 +253,83 @@
             tbpEnderecos.Text = "Endereços";
             tbpEnderecos.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // btnAdicionaEndereco
             // 
-            button2.Location = new Point(330, 166);
-            button2.Name = "button2";
-            button2.Size = new Size(161, 23);
-            button2.TabIndex = 9;
-            button2.Text = "Adicionar &Novo";
-            button2.UseVisualStyleBackColor = true;
+            btnAdicionaEndereco.Location = new Point(330, 166);
+            btnAdicionaEndereco.Name = "btnAdicionaEndereco";
+            btnAdicionaEndereco.Size = new Size(161, 23);
+            btnAdicionaEndereco.TabIndex = 9;
+            btnAdicionaEndereco.Text = "Adicionar &Novo";
+            btnAdicionaEndereco.UseVisualStyleBackColor = true;
             // 
-            // button1
+            // btnSalvar
             // 
-            button1.Location = new Point(23, 166);
-            button1.Name = "button1";
-            button1.Size = new Size(75, 23);
-            button1.TabIndex = 8;
-            button1.Text = "&Salvar";
-            button1.UseVisualStyleBackColor = true;
+            btnSalvar.Location = new Point(23, 166);
+            btnSalvar.Name = "btnSalvar";
+            btnSalvar.Size = new Size(75, 23);
+            btnSalvar.TabIndex = 8;
+            btnSalvar.Text = "&Salvar";
+            btnSalvar.UseVisualStyleBackColor = true;
+            btnSalvar.Click += btnSalvar_Click;
             // 
-            // comboBox1
+            // cmbTipoEndereco
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "RES - Residencial", "COM - Comercial", "ENT - Entrega", "COB - Cobrança", "RET - Retirada", "TMP - Temporário" });
-            comboBox1.Location = new Point(21, 127);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(151, 23);
-            comboBox1.TabIndex = 7;
+            cmbTipoEndereco.FormattingEnabled = true;
+            cmbTipoEndereco.Items.AddRange(new object[] { "RES - Residencial", "COM - Comercial", "ENT - Entrega", "COB - Cobrança", "RET - Retirada", "TMP - Temporário" });
+            cmbTipoEndereco.Location = new Point(21, 127);
+            cmbTipoEndereco.Name = "cmbTipoEndereco";
+            cmbTipoEndereco.Size = new Size(151, 23);
+            cmbTipoEndereco.TabIndex = 7;
             // 
-            // textBox6
+            // txtUf
             // 
-            textBox6.Location = new Point(455, 78);
-            textBox6.Name = "textBox6";
-            textBox6.Size = new Size(36, 23);
-            textBox6.TabIndex = 6;
+            txtUf.Location = new Point(455, 78);
+            txtUf.Name = "txtUf";
+            txtUf.Size = new Size(36, 23);
+            txtUf.TabIndex = 6;
             // 
-            // textBox5
+            // txtCidade
             // 
-            textBox5.Location = new Point(304, 78);
-            textBox5.Name = "textBox5";
-            textBox5.Size = new Size(145, 23);
-            textBox5.TabIndex = 5;
+            txtCidade.Location = new Point(304, 78);
+            txtCidade.Name = "txtCidade";
+            txtCidade.Size = new Size(145, 23);
+            txtCidade.TabIndex = 5;
             // 
-            // textBox4
+            // txtBairro
             // 
-            textBox4.Location = new Point(178, 78);
-            textBox4.Name = "textBox4";
-            textBox4.Size = new Size(120, 23);
-            textBox4.TabIndex = 4;
+            txtBairro.Location = new Point(178, 78);
+            txtBairro.Name = "txtBairro";
+            txtBairro.Size = new Size(120, 23);
+            txtBairro.TabIndex = 4;
             // 
-            // textBox3
+            // txtComplemento
             // 
-            textBox3.Location = new Point(19, 78);
-            textBox3.Name = "textBox3";
-            textBox3.Size = new Size(153, 23);
-            textBox3.TabIndex = 3;
+            txtComplemento.Location = new Point(19, 78);
+            txtComplemento.Name = "txtComplemento";
+            txtComplemento.Size = new Size(153, 23);
+            txtComplemento.TabIndex = 3;
             // 
-            // textBox2
+            // txtNumero
             // 
-            textBox2.Location = new Point(391, 32);
-            textBox2.Name = "textBox2";
-            textBox2.Size = new Size(100, 23);
-            textBox2.TabIndex = 2;
+            txtNumero.Location = new Point(391, 32);
+            txtNumero.Name = "txtNumero";
+            txtNumero.Size = new Size(100, 23);
+            txtNumero.TabIndex = 2;
             // 
-            // textBox1
+            // txtLogradouro
             // 
-            textBox1.Location = new Point(104, 32);
-            textBox1.Name = "textBox1";
-            textBox1.Size = new Size(281, 23);
-            textBox1.TabIndex = 1;
+            txtLogradouro.Location = new Point(104, 32);
+            txtLogradouro.Name = "txtLogradouro";
+            txtLogradouro.Size = new Size(281, 23);
+            txtLogradouro.TabIndex = 1;
             // 
-            // maskedTextBox1
+            // mxtCep
             // 
-            maskedTextBox1.Location = new Point(19, 32);
-            maskedTextBox1.Mask = "00000-999";
-            maskedTextBox1.Name = "maskedTextBox1";
-            maskedTextBox1.Size = new Size(79, 23);
-            maskedTextBox1.TabIndex = 0;
+            mxtCep.Location = new Point(19, 32);
+            mxtCep.Mask = "00000-999";
+            mxtCep.Name = "mxtCep";
+            mxtCep.Size = new Size(79, 23);
+            mxtCep.TabIndex = 0;
             // 
             // groupBox1
             // 
@@ -425,7 +437,7 @@
         private DateTimePicker dtpDataNasc;
         private TextBox txtEmail;
         private TextBox txtNome;
-        private MaskedTextBox mstTelefone;
+        private MaskedTextBox mxtTelefone;
         private Label label3;
         private Label label2;
         private Label label1;
@@ -434,16 +446,16 @@
         private Label label4;
         private MaskedTextBox mxtCpf;
         private Button btnInsert;
-        private TextBox textBox1;
-        private MaskedTextBox maskedTextBox1;
-        private ComboBox comboBox1;
-        private TextBox textBox6;
-        private TextBox textBox5;
-        private TextBox textBox4;
-        private TextBox textBox3;
-        private TextBox textBox2;
-        private Button button2;
-        private Button button1;
+        private TextBox txtLogradouro;
+        private MaskedTextBox mxtCep;
+        private ComboBox cmbTipoEndereco;
+        private TextBox txtUf;
+        private TextBox txtCidade;
+        private TextBox txtBairro;
+        private TextBox txtComplemento;
+        private TextBox txtNumero;
+        private Button btnAdicionaEndereco;
+        private Button btnSalvar;
         private DataGridView dgvEnderecos;
         private Button btnEditar;
         private DataGridViewTextBoxColumn clnCep;
@@ -454,5 +466,6 @@
         private DataGridViewTextBoxColumn clnCidade;
         private DataGridViewTextBoxColumn clnUf;
         private DataGridViewTextBoxColumn clnTipoEndereco;
+        private TextBox txtClienteId;
     }
 }
