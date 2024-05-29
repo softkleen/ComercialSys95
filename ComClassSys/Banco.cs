@@ -22,7 +22,6 @@ namespace ComClassSys
             }
             catch (Exception)
             {
-
                 throw;
             }
             return cmd;

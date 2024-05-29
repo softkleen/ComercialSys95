@@ -73,11 +73,42 @@ namespace ComercialSys
                     txtCidade.Text,
                     txtUf.Text,
                     tipoEnd
-                ); 
+                );
 
             endereco.Inserir();
 
             CarregaGrid(int.Parse(txtClienteId.Text));
+        }
+
+        private void mxtCep_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+
+        }
+
+        private void mxtCep_Leave(object sender, EventArgs e)
+        {
+            mxtCep.TextMaskFormat = MaskFormat.ExcludePromptAndLiterals;
+            if (mxtCep.Text.Length == 8)
+            {
+                WebCEP webCEP = new(mxtCep.Text);
+                txtLogradouro.Text = webCEP.TipoLagradouro + " " + webCEP.Lagradouro;
+                txtBairro.Text = webCEP.Bairro;
+                txtCidade.Text = webCEP.Cidade;
+                txtUf.Text = webCEP.UF;
+                txtNumero.Focus();
+
+            }
+        }
+
+        private void FrmClienteNovo_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvEnderecos_SelectionChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

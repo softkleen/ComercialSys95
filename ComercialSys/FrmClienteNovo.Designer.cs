@@ -330,6 +330,8 @@
             mxtCep.Name = "mxtCep";
             mxtCep.Size = new Size(79, 23);
             mxtCep.TabIndex = 0;
+            mxtCep.MaskInputRejected += mxtCep_MaskInputRejected;
+            mxtCep.Leave += mxtCep_Leave;
             // 
             // groupBox1
             // 
@@ -351,8 +353,10 @@
             dgvEnderecos.Name = "dgvEnderecos";
             dgvEnderecos.ReadOnly = true;
             dgvEnderecos.RowHeadersVisible = false;
+            dgvEnderecos.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvEnderecos.Size = new Size(510, 125);
             dgvEnderecos.TabIndex = 1;
+            dgvEnderecos.SelectionChanged += dgvEnderecos_SelectionChanged;
             // 
             // clnCep
             // 
@@ -418,6 +422,7 @@
             Controls.Add(groupBox1);
             Name = "FrmClienteNovo";
             Text = "FrmClienteNovo";
+            Load += FrmClienteNovo_Load;
             tabControl1.ResumeLayout(false);
             tbpDadosPessoais.ResumeLayout(false);
             tbpDadosPessoais.PerformLayout();

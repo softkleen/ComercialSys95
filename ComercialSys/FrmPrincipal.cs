@@ -11,7 +11,7 @@ namespace ComercialSys
 
         private void novoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmCliente frmCliente = new FrmCliente();
+            FrmClienteNovo frmCliente = new FrmClienteNovo();
             frmCliente.MdiParent = this;
             frmCliente.StartPosition = FormStartPosition.CenterScreen;
             frmCliente.Show();
@@ -33,7 +33,7 @@ namespace ComercialSys
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
-        { 
+        {
             //FrmLogin login = new();
             //login.MdiParent = this;
             //login.StartPosition = FormStartPosition.CenterScreen;
@@ -42,6 +42,14 @@ namespace ComercialSys
 
             //tslUsuario.Text = Program.Usuario.Nome + " - " + Program.Usuario.Nivel.Nome;
 
+        }
+
+        private void consultarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmClienteConsulta frmClienteConsulta = new FrmClienteConsulta();
+            frmClienteConsulta.MdiParent = this;
+            frmClienteConsulta.StartPosition = FormStartPosition.CenterScreen;
+            frmClienteConsulta.Show();
         }
     }
 }
