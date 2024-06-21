@@ -38,20 +38,20 @@
             txtVendedor = new TextBox();
             button1 = new Button();
             groupBox2 = new GroupBox();
+            button3 = new Button();
+            label7 = new Label();
+            textBox10 = new TextBox();
+            textBox9 = new TextBox();
+            label6 = new Label();
+            textBox8 = new TextBox();
+            textBox7 = new TextBox();
+            label5 = new Label();
+            label4 = new Label();
             dataGridView1 = new DataGridView();
             button2 = new Button();
             textBox4 = new TextBox();
             textBox5 = new TextBox();
             textBox6 = new TextBox();
-            label4 = new Label();
-            label5 = new Label();
-            textBox7 = new TextBox();
-            textBox8 = new TextBox();
-            label6 = new Label();
-            textBox9 = new TextBox();
-            textBox10 = new TextBox();
-            label7 = new Label();
-            button3 = new Button();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -90,6 +90,7 @@
             textBox2.Name = "textBox2";
             textBox2.Size = new Size(100, 23);
             textBox2.TabIndex = 0;
+            textBox2.TextChanged += textBox2_TextChanged;
             // 
             // label2
             // 
@@ -155,6 +156,80 @@
             groupBox2.TabStop = false;
             groupBox2.Text = "Produto";
             // 
+            // button3
+            // 
+            button3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            button3.Location = new Point(658, 28);
+            button3.Name = "button3";
+            button3.Size = new Size(75, 35);
+            button3.TabIndex = 8;
+            button3.Text = "Inserir";
+            button3.UseVisualStyleBackColor = true;
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(552, 19);
+            label7.Name = "label7";
+            label7.Size = new Size(69, 15);
+            label7.TabIndex = 7;
+            label7.Text = "Quantidade";
+            // 
+            // textBox10
+            // 
+            textBox10.Location = new Point(552, 37);
+            textBox10.Name = "textBox10";
+            textBox10.Size = new Size(100, 23);
+            textBox10.TabIndex = 6;
+            // 
+            // textBox9
+            // 
+            textBox9.Location = new Point(446, 37);
+            textBox9.Name = "textBox9";
+            textBox9.Size = new Size(100, 23);
+            textBox9.TabIndex = 5;
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(441, 19);
+            label6.Name = "label6";
+            label6.Size = new Size(78, 15);
+            label6.TabIndex = 4;
+            label6.Text = "Valor Unitário";
+            // 
+            // textBox8
+            // 
+            textBox8.Location = new Point(121, 37);
+            textBox8.Name = "textBox8";
+            textBox8.Size = new Size(319, 23);
+            textBox8.TabIndex = 3;
+            // 
+            // textBox7
+            // 
+            textBox7.Location = new Point(6, 37);
+            textBox7.Name = "textBox7";
+            textBox7.Size = new Size(100, 23);
+            textBox7.TabIndex = 2;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(119, 19);
+            label5.Name = "label5";
+            label5.Size = new Size(58, 15);
+            label5.TabIndex = 1;
+            label5.Text = "Descrição";
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(6, 19);
+            label4.Name = "label4";
+            label4.Size = new Size(97, 15);
+            label4.TabIndex = 0;
+            label4.Text = "Código de Barras";
+            // 
             // dataGridView1
             // 
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
@@ -195,80 +270,6 @@
             textBox6.Name = "textBox6";
             textBox6.Size = new Size(167, 39);
             textBox6.TabIndex = 12;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(6, 19);
-            label4.Name = "label4";
-            label4.Size = new Size(97, 15);
-            label4.TabIndex = 0;
-            label4.Text = "Código de Barras";
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Location = new Point(119, 19);
-            label5.Name = "label5";
-            label5.Size = new Size(58, 15);
-            label5.TabIndex = 1;
-            label5.Text = "Descrição";
-            // 
-            // textBox7
-            // 
-            textBox7.Location = new Point(6, 37);
-            textBox7.Name = "textBox7";
-            textBox7.Size = new Size(100, 23);
-            textBox7.TabIndex = 2;
-            // 
-            // textBox8
-            // 
-            textBox8.Location = new Point(121, 37);
-            textBox8.Name = "textBox8";
-            textBox8.Size = new Size(319, 23);
-            textBox8.TabIndex = 3;
-            // 
-            // label6
-            // 
-            label6.AutoSize = true;
-            label6.Location = new Point(441, 19);
-            label6.Name = "label6";
-            label6.Size = new Size(78, 15);
-            label6.TabIndex = 4;
-            label6.Text = "Valor Unitário";
-            // 
-            // textBox9
-            // 
-            textBox9.Location = new Point(446, 37);
-            textBox9.Name = "textBox9";
-            textBox9.Size = new Size(100, 23);
-            textBox9.TabIndex = 5;
-            // 
-            // textBox10
-            // 
-            textBox10.Location = new Point(552, 37);
-            textBox10.Name = "textBox10";
-            textBox10.Size = new Size(100, 23);
-            textBox10.TabIndex = 6;
-            // 
-            // label7
-            // 
-            label7.AutoSize = true;
-            label7.Location = new Point(552, 19);
-            label7.Name = "label7";
-            label7.Size = new Size(69, 15);
-            label7.TabIndex = 7;
-            label7.Text = "Quantidade";
-            // 
-            // button3
-            // 
-            button3.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            button3.Location = new Point(658, 28);
-            button3.Name = "button3";
-            button3.Size = new Size(75, 35);
-            button3.TabIndex = 8;
-            button3.Text = "Inserir";
-            button3.UseVisualStyleBackColor = true;
             // 
             // FrmPedido
             // 
