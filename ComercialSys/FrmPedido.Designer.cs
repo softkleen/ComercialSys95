@@ -38,8 +38,8 @@
             txtVendedor = new TextBox();
             btnAbrirNovo = new Button();
             gbxProduto = new GroupBox();
-            lblDescMax = new Label();
             btnInserirItem = new Button();
+            lblDescMax = new Label();
             label8 = new Label();
             label7 = new Label();
             txtDescontoItem = new TextBox();
@@ -50,6 +50,7 @@
             txtCodBar = new TextBox();
             label5 = new Label();
             label4 = new Label();
+            btnExcluirItem = new Button();
             dgvItens = new DataGridView();
             clnSeq = new DataGridViewTextBoxColumn();
             clnCodBar = new DataGridViewTextBoxColumn();
@@ -59,12 +60,14 @@
             clnQuantidade = new DataGridViewTextBoxColumn();
             clnDesconto = new DataGridViewTextBoxColumn();
             clnValorItem = new DataGridViewTextBoxColumn();
+            clnId = new DataGridViewTextBoxColumn();
             btn = new Button();
             txtDesconto = new TextBox();
             txtOutros = new TextBox();
             txtTotal = new TextBox();
             txtSubTotal = new TextBox();
             label9 = new Label();
+            lblIdCodBar = new Label();
             groupBox1.SuspendLayout();
             gbxProduto.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dgvItens).BeginInit();
@@ -154,8 +157,8 @@
             // 
             // gbxProduto
             // 
-            gbxProduto.Controls.Add(lblDescMax);
             gbxProduto.Controls.Add(btnInserirItem);
+            gbxProduto.Controls.Add(lblDescMax);
             gbxProduto.Controls.Add(label8);
             gbxProduto.Controls.Add(label7);
             gbxProduto.Controls.Add(txtDescontoItem);
@@ -174,6 +177,17 @@
             gbxProduto.TabStop = false;
             gbxProduto.Text = "Produto";
             // 
+            // btnInserirItem
+            // 
+            btnInserirItem.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnInserirItem.Location = new Point(668, 28);
+            btnInserirItem.Name = "btnInserirItem";
+            btnInserirItem.Size = new Size(65, 35);
+            btnInserirItem.TabIndex = 15;
+            btnInserirItem.Text = "Inserir";
+            btnInserirItem.UseVisualStyleBackColor = true;
+            btnInserirItem.Click += btnInserirItem_Click;
+            // 
             // lblDescMax
             // 
             lblDescMax.AutoSize = true;
@@ -183,17 +197,6 @@
             lblDescMax.Size = new Size(44, 15);
             lblDescMax.TabIndex = 9;
             lblDescMax.Text = "R$ 0,00";
-            // 
-            // btnInserirItem
-            // 
-            btnInserirItem.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnInserirItem.Location = new Point(658, 28);
-            btnInserirItem.Name = "btnInserirItem";
-            btnInserirItem.Size = new Size(75, 35);
-            btnInserirItem.TabIndex = 8;
-            btnInserirItem.Text = "Inserir";
-            btnInserirItem.UseVisualStyleBackColor = true;
-            btnInserirItem.Click += btnInserirItem_Click;
             // 
             // label8
             // 
@@ -283,11 +286,22 @@
             label4.TabIndex = 0;
             label4.Text = "Código de Barras";
             // 
+            // btnExcluirItem
+            // 
+            btnExcluirItem.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            btnExcluirItem.Location = new Point(665, 558);
+            btnExcluirItem.Name = "btnExcluirItem";
+            btnExcluirItem.Size = new Size(110, 35);
+            btnExcluirItem.TabIndex = 8;
+            btnExcluirItem.Text = "Excluir Item";
+            btnExcluirItem.UseVisualStyleBackColor = true;
+            btnExcluirItem.Click += btnExcluirItem_Click;
+            // 
             // dgvItens
             // 
             dgvItens.AllowUserToAddRows = false;
             dgvItens.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvItens.Columns.AddRange(new DataGridViewColumn[] { clnSeq, clnCodBar, clnDescricao, clnUnidadeVenda, clnValorUnit, clnQuantidade, clnDesconto, clnValorItem });
+            dgvItens.Columns.AddRange(new DataGridViewColumn[] { clnSeq, clnCodBar, clnDescricao, clnUnidadeVenda, clnValorUnit, clnQuantidade, clnDesconto, clnValorItem, clnId });
             dgvItens.Location = new Point(36, 307);
             dgvItens.Name = "dgvItens";
             dgvItens.ReadOnly = true;
@@ -296,6 +310,7 @@
             dgvItens.Size = new Size(740, 245);
             dgvItens.TabIndex = 8;
             dgvItens.CellContentClick += dataGridView1_CellContentClick;
+            dgvItens.RowsRemoved += dgvItens_RowsRemoved;
             // 
             // clnSeq
             // 
@@ -359,6 +374,13 @@
             clnValorItem.Name = "clnValorItem";
             clnValorItem.ReadOnly = true;
             // 
+            // clnId
+            // 
+            clnId.HeaderText = "Id";
+            clnId.Name = "clnId";
+            clnId.ReadOnly = true;
+            clnId.Visible = false;
+            // 
             // btn
             // 
             btn.Font = new Font("Segoe UI", 14F);
@@ -408,12 +430,21 @@
             label9.TabIndex = 14;
             label9.Text = "SubTotal";
             // 
+            // lblIdCodBar
+            // 
+            lblIdCodBar.Location = new Point(496, 23);
+            lblIdCodBar.Name = "lblIdCodBar";
+            lblIdCodBar.Size = new Size(51, 15);
+            lblIdCodBar.TabIndex = 2;
+            lblIdCodBar.Text = "Número";
+            // 
             // FrmPedido
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(978, 587);
+            ClientSize = new Size(987, 619);
             Controls.Add(label9);
+            Controls.Add(btnExcluirItem);
             Controls.Add(txtSubTotal);
             Controls.Add(txtTotal);
             Controls.Add(txtOutros);
@@ -425,6 +456,7 @@
             Controls.Add(txtVendedor);
             Controls.Add(label3);
             Controls.Add(txtNumeroPedido);
+            Controls.Add(lblIdCodBar);
             Controls.Add(label2);
             Controls.Add(groupBox1);
             Controls.Add(label1);
@@ -463,7 +495,7 @@
         private TextBox txtCodBar;
         private Label label5;
         private Label label4;
-        private Button btnInserirItem;
+        private Button btnExcluirItem;
         private Label label7;
         private TextBox txtQuantidade;
         private TextBox txtSubTotal;
@@ -479,5 +511,8 @@
         private TextBox txtDescontoItem;
         private Label label9;
         private Label lblDescMax;
+        private Button btnInserirItem;
+        private DataGridViewTextBoxColumn clnId;
+        private Label lblIdCodBar;
     }
 }

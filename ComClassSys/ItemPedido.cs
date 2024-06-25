@@ -90,7 +90,7 @@ namespace ComClassSys
             return true;
         }
         // Excluir
-        public void Remover(int id)
+        public static void Remover(int id)
         {
             var cmd = Banco.Abrir();
             cmd.CommandType = CommandType.StoredProcedure;
